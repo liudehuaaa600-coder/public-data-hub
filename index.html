@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公开数据查询中心</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Weather & Time -->
+        <header class="hero">
+            <h1>🌍 公开数据查询中心</h1>
+            <p class="subtitle">Government Open Data · Patents · Academic Papers</p>
+            
+            <div class="weather-card" id="weather-card">
+                <div class="weather-loading">加载中...</div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab active" data-tab="gov">🏛️ 政府公开数据</button>
+            <button class="tab" data-tab="patent">📋 专利查询</button>
+            <button class="tab" data-tab="academic">📚 学术论文</button>
+        </nav>
+
+        <!-- Government Data Section -->
+        <section class="panel active" id="gov-panel">
+            <div class="search-box">
+                <input type="text" id="gov-search" placeholder="搜索国家或数据类型...">
+            </div>
+            <div class="country-filter">
+                <button class="filter-btn active" data-region="all">全部</button>
+                <button class="filter-btn" data-region="asia">亚洲</button>
+                <button class="filter-btn" data-region="europe">欧洲</button>
+                <button class="filter-btn" data-region="america">美洲</button>
+                <button class="filter-btn" data-region="china">中国相关</button>
+            </div>
+            <div class="data-grid" id="gov-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- Patent Section -->
+        <section class="panel" id="patent-panel">
+            <div class="search-box">
+                <input type="text" id="patent-search" placeholder="输入关键词搜索专利 (如: machine learning, 热解技术)...">
+                <button class="search-btn" id="patent-btn">搜索</button>
+            </div>
+            <div class="patent-info">
+                <h3>🔍 专利数据库入口</h3>
+                <div class="patent-links">
+                    <a href="https://patentsview.org/" target="_blank" class="data-card">
+                        <h4>PatentsView (美国)</h4>
+                        <p>美国专利可视化分析平台，免费API</p>
+                        <span class="badge free">免认证</span>
+                    </a>
+                    <a href="https://www.uspto.gov/patents/search" target="_blank" class="data-card">
+                        <h4>USPTO (美国专利局)</h4>
+                        <p>美国官方专利检索系统</p>
+                        <span class="badge free">免费</span>
+                    </a>
+                    <a href="https://patents.google.com/" target="_blank" class="data-card">
+                        <h4>Google Patents</h4>
+                        <p>全球专利搜索引擎</p>
+                        <span class="badge free">免费</span>
+                    </a>
+                    <a href="https://worldwide.espacenet.com/" target="_blank" class="data-card">
+                        <h4>Espacenet (欧洲)</h4>
+                        <p>欧洲专利局全球专利检索</p>
+                        <span class="badge free">免费</span>
+                    </a>
+                    <a href="https://pss-system.cponline.cnipa.gov.cn/conventionalSearch" target="_blank" class="data-card">
+                        <h4>中国专利公布公告</h4>
+                        <p>国家知识产权局官方检索</p>
+                        <span class="badge free">免费</span>
+                    </a>
+                    <a href="https://patentscope.wipo.int/" target="_blank" class="data-card">
+                        <h4>WIPO Patentscope</h4>
+                        <p>世界知识产权组织全球专利</p>
+                        <span class="badge free">免费</span>
+                    </a>
+                </div>
+            </div>
+            <div class="results" id="patent-results"></div>
+        </section>
+
+        <!-- Academic Papers Section -->
+        <section class="panel" id="academic-panel">
+            <div class="search-box">
+                <input type="text" id="academic-search" placeholder="输入关键词搜索学术论文...">
+                <button class="search-btn" id="academic-btn">搜索</button>
+            </div>
+            <div class="academic-links">
+                <h3>📖 学术资源入口</h3>
+                <div class="paper-sources">
+                    <a href="https://arxiv.org/search/?query=" target="_blank" class="data-card">
+                        <h4>arXiv</h4>
+                        <p>预印本论文库（物理、CS、数学等）</p>
+                        <span class="badge free">开放获取</span>
+                    </a>
+                    <a href="https://scholar.google.com/" target="_blank" class="data-card">
+                        <h4>Google Scholar</h4>
+                        <p>学术搜索引擎</p>
+                        <span class="badge free">免费</span>
+                    </a>
+                    <a href="https://www.semanticscholar.org/" target="_blank" class="data-card">
+                        <h4>Semantic Scholar</h4>
+                        <p>AI驱动的学术搜索</p>
+                        <span class="badge free">免费API</span>
+                    </a>
+                    <a href="https://www.cnki.net/" target="_blank" class="data-card">
+                        <h4>中国知网 CNKI</h4>
+                        <p>中文学术文献数据库</p>
+                        <span class="badge cn">中文</span>
+                    </a>
+                    <a href="https://www.wanfangdata.com.cn/" target="_blank" class="data-card">
+                        <h4>万方数据</h4>
+                        <p>中文期刊、学位论文</p>
+                        <span class="badge cn">中文</span>
+                    </a>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" class="data-card">
+                        <h4>PubMed</h4>
+                        <p>生物医学文献数据库</p>
+                        <span class="badge free">免费</span>
+                    </a>
+                    <a href="https://www.sciencedirect.com/" target="_blank" class="data-card">
+                        <h4>ScienceDirect</h4>
+                        <p>Elsevier科学文献</p>
+                        <span class="badge">部分开放</span>
+                    </a>
+                    <a href="https://core.ac.uk/" target="_blank" class="data-card">
+                        <h4>CORE</h4>
+                        <p>全球开放获取论文聚合</p>
+                        <span class="badge free">免费API</span>
+                    </a>
+                </div>
+            </div>
+            <div class="results" id="academic-results"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>数据来源: <a href="https://github.com/public-apis/public-apis" target="_blank">public-apis</a> | 
+               天气: <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> |
+               Made with ❤️ by AI Agent</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
