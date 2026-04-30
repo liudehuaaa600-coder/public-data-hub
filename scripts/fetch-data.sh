@@ -47,25 +47,25 @@ print(json.dumps(meta, ensure_ascii=False))
 }
 
 # ============ 科技与开发热榜 ============
-fetch "hackernews-top" "hackernews.json" hackernews top --limit 20
+fetch "hackernews-top" "hackernews" hackernews top --limit 20
 
 # ============ 学术论文 ============
-fetch "arxiv-ml" "arxiv-ml.json" arxiv search --query "machine learning" --limit 10
-fetch "arxiv-llm" "arxiv-llm.json" arxiv search --query "large language models" --limit 10
+fetch "arxiv-ml" "arxiv-ml" arxiv search --query "machine learning" --limit 10
+fetch "arxiv-llm" "arxiv-llm" arxiv search --query "large language models" --limit 10
 
 # ============ 中国政府数据 ============
-fetch "gov-law" "gov-law.json" gov-law recent --limit 15
-fetch "gov-policy" "gov-policy.json" gov-policy recent --limit 15
+fetch "gov-law" "gov-law" gov-law recent --limit 15
+fetch "gov-policy" "gov-policy" gov-policy recent --limit 15
 
 # ============ 财经数据 ============
-fetch "eastmoney-news" "eastmoney-news.json" eastmoney kuaixun --limit 15
-fetch "eastmoney-hot" "eastmoney-hot.json" eastmoney hot-rank --limit 15
+fetch "eastmoney-news" "eastmoney-news" eastmoney kuaixun --limit 15
+fetch "eastmoney-hot" "eastmoney-hot" eastmoney hot-rank --limit 15
 
 # ============ 开发社区 ============
-fetch "stackoverflow-hot" "stackoverflow.json" stackoverflow hot --limit 15
+fetch "stackoverflow-hot" "stackoverflow" stackoverflow hot --limit 15
 
 # ============ 百科 ============
-fetch "wikipedia-trending" "wikipedia.json" wikipedia trending --limit 15
+fetch "wikipedia-trending" "wikipedia" wikipedia trending --limit 15
 
 # ============ 生成索引 ============
 echo "" > "$DATA_DIR/index.json"
