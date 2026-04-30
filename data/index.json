@@ -1,0 +1,29 @@
+{
+  "updated": "2026-04-30T02:26:08Z",
+  "sources": [
+    {
+      "name": "eastmoney-news",
+      "file": "data/eastmoney-news.json.json",
+      "count": 15,
+      "updated": "2026-04-30T02:25:35Z"
+    },
+    {
+      "name": "hackernews",
+      "file": "data/hackernews.json.json",
+      "count": 20,
+      "updated": "2026-04-30T02:24:32Z"
+    },
+    {
+      "name": "stackoverflow",
+      "file": "data/stackoverflow.json.json",
+      "count": 15,
+      "updated": "2026-04-30T02:26:06Z"
+    },
+    {
+      "name": "wikipedia",
+      "file": "data/wikipedia.json.json",
+      "count": 15,
+      "updated": "2026-04-30T02:26:08Z"
+    }
+  ]
+}
