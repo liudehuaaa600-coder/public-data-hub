@@ -21,6 +21,32 @@
                 <span class="status-dot"></span>
                 <span>数据状态: 检查中...</span>
             </div>
+            
+            <!-- 数据加载进度面板 -->
+            <div class="progress-panel" id="progress-panel">
+                <h3>📊 数据加载进度</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-text" id="progress-text">0%</div>
+                </div>
+                <div class="progress-details" id="progress-details">
+                    <!-- 动态填充每个数据源状态 -->
+                </div>
+                <button class="audit-btn" id="start-audit">🔍 开始数据审计</button>
+            </div>
+            
+            <!-- 数据审计结果面板 -->
+            <div class="audit-panel" id="audit-panel" style="display:none;">
+                <h3>📋 数据审计报告</h3>
+                <div class="audit-summary" id="audit-summary">
+                    <!-- 审计摘要 -->
+                </div>
+                <div class="audit-details" id="audit-details">
+                    <!-- 详细审计结果 -->
+                </div>
+            </div>
         </header>
 
         <!-- Navigation Tabs -->
