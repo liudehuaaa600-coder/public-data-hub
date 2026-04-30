@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>公开数据查询中心</title>
+    <title>公开数据查询中心 — OpenCLI 实时热榜</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,22 +11,44 @@
         <!-- Header with Weather & Time -->
         <header class="hero">
             <h1>🌍 公开数据查询中心</h1>
-            <p class="subtitle">Government Open Data · Patents · Academic Papers</p>
+            <p class="subtitle">Government Open Data · Patents · Academic Papers · Real-time Hot Lists</p>
             
             <div class="weather-card" id="weather-card">
                 <div class="weather-loading">加载中...</div>
+            </div>
+            
+            <div class="data-status" id="data-status">
+                <span class="status-dot"></span>
+                <span>数据状态: 检查中...</span>
             </div>
         </header>
 
         <!-- Navigation Tabs -->
         <nav class="tabs">
-            <button class="tab active" data-tab="gov">🏛️ 政府公开数据</button>
+            <button class="tab active" data-tab="hot">🔥 实时热榜</button>
+            <button class="tab" data-tab="gov">🏛️ 政府数据</button>
             <button class="tab" data-tab="patent">📋 专利查询</button>
             <button class="tab" data-tab="academic">📚 学术论文</button>
         </nav>
 
+        <!-- Hot Lists Section -->
+        <section class="panel active" id="hot-panel">
+            <div class="hot-grid" id="hot-grid">
+                <!-- 热榜卡片由 JS 动态填充 -->
+                <div class="hot-card loading">
+                    <h3>正在加载热榜数据...</h3>
+                </div>
+            </div>
+        </section>
+
         <!-- Government Data Section -->
-        <section class="panel active" id="gov-panel">
+        <section class="panel" id="gov-panel">
+            <div class="gov-realtime" id="gov-realtime">
+                <h3>📊 政府最新数据</h3>
+                <div class="gov-cards" id="gov-cards">
+                    <!-- 由 JS 加载 JSON 数据 -->
+                </div>
+            </div>
             <div class="search-box">
                 <input type="text" id="gov-search" placeholder="搜索国家或数据类型...">
             </div>
@@ -88,6 +110,12 @@
 
         <!-- Academic Papers Section -->
         <section class="panel" id="academic-panel">
+            <div class="academic-realtime" id="academic-realtime">
+                <h3>📄 最新学术论文</h3>
+                <div class="paper-cards" id="paper-cards">
+                    <!-- 由 JS 加载 arxiv JSON -->
+                </div>
+            </div>
             <div class="search-box">
                 <input type="text" id="academic-search" placeholder="输入关键词搜索学术论文...">
                 <button class="search-btn" id="academic-btn">搜索</button>
@@ -115,25 +143,10 @@
                         <p>中文学术文献数据库</p>
                         <span class="badge cn">中文</span>
                     </a>
-                    <a href="https://www.wanfangdata.com.cn/" target="_blank" class="data-card">
-                        <h4>万方数据</h4>
-                        <p>中文期刊、学位论文</p>
-                        <span class="badge cn">中文</span>
-                    </a>
                     <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" class="data-card">
                         <h4>PubMed</h4>
                         <p>生物医学文献数据库</p>
                         <span class="badge free">免费</span>
-                    </a>
-                    <a href="https://www.sciencedirect.com/" target="_blank" class="data-card">
-                        <h4>ScienceDirect</h4>
-                        <p>Elsevier科学文献</p>
-                        <span class="badge">部分开放</span>
-                    </a>
-                    <a href="https://core.ac.uk/" target="_blank" class="data-card">
-                        <h4>CORE</h4>
-                        <p>全球开放获取论文聚合</p>
-                        <span class="badge free">免费API</span>
                     </a>
                 </div>
             </div>
@@ -142,9 +155,11 @@
 
         <!-- Footer -->
         <footer>
-            <p>数据来源: <a href="https://github.com/public-apis/public-apis" target="_blank">public-apis</a> | 
+            <p>数据来源: <a href="https://github.com/public-apis/public-apis" target="_blank">public-apis</a> · 
+               抓取引擎: <a href="https://github.com/jackwener/opencli" target="_blank">OpenCLI</a> ·
                天气: <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> |
                Made with ❤️ by AI Agent</p>
+            <p class="update-info" id="update-info">数据更新时间: --</p>
         </footer>
     </div>
 

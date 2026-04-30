@@ -1,0 +1,51 @@
+name: Fetch OpenCLI Data
+
+on:
+  schedule:
+    # 每2小时运行一次 (UTC 时间)
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # 支持手动触发
+  push:
+    paths:
+      - 'scripts/fetch-data.sh'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install OpenCLI
+        run: npm install -g @jackwener/opencli
+
+      - name: Verify OpenCLI
+        run: opencli --version
+
+      - name: Fetch data
+        run: bash scripts/fetch-data.sh
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          CHANGES=$(git diff --cached --stat)
+          if [ -n "$CHANGES" ]; then
+            git commit -m "🔄 Auto-update data ($(date -u +%Y-%m-%d\ %H:%M\ UTC))"
+            git push
+          else
+            echo "No changes to commit"
+          fi
